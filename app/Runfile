@@ -1,0 +1,12 @@
+require 'fileutils'
+include FileUtils
+
+usage  "setup NAME"
+action :setup do |args|
+  say " ===> Setup for #{args['NAME']}"
+  if args['NAME'] == 'server2'
+    say " ===> Creating /data folder"
+    mkdir '/data' unless Dir.exist? '/data'
+    File.write '/data/sample.txt', 'tada!'
+  end
+end

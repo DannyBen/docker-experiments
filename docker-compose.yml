@@ -1,14 +1,20 @@
 version: '2'
 
 services:
+  # dc run bash
   bash: &default
     image: dannyben/experiments
-    volumes: ["$PWD/app:/app"]
+    volumes: 
+    - ./app:/app
+    - data:/data
     command: bash
 
+  # dc up server1
   server1:
     <<: *default
-    build: .
+    build:
+      context: .
+      args: { build_name: server1 }
     command: ruby server1.rb
     ports: ["3000:3000"]
     links: [server2]
@@ -16,9 +22,16 @@ services:
       PORT: 3000
       SERVER2_URL: http://server2:4000
 
+  # dc up server2
   server2:
     <<: *default
+    build:
+      context: .
+      args: { build_name: server2 }
     command: ruby server2.rb
     ports: ["4000:4000"]
     environment: 
       PORT: 4000
+
+volumes:
+  data:

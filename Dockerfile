@@ -1,6 +1,8 @@
 FROM dannyben/alpine-ruby
 
-ENV PS1 "\n\ndocker:experiments \W \$ "
+ARG build_name
+
+ENV PS1 "\n\n>> experiments \W \$ "
 
 RUN apk --no-cache add bash
 
@@ -8,6 +10,7 @@ WORKDIR /app
 COPY app/Gemfile* ./
 RUN bundle
 
-COPY app /app/
+COPY app ./
+RUN run setup $build_name
 
 EXPOSE 3000 4000
