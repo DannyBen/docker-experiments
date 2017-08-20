@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  bash: &default
+    image: dannyben/experiments
+    volumes: ["$PWD/app:/app"]
+    command: bash
+
+  server1:
+    <<: *default
+    build: .
+    command: ruby server1.rb
+    ports: ["3000:3000"]
+    links: [server2]
+    environment: 
+      PORT: 3000
+      SERVER2_URL: http://server2:4000
+
+  server2:
+    <<: *default
+    command: ruby server2.rb
+    ports: ["4000:4000"]
+    environment: 
+      PORT: 4000
