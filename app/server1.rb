@@ -10,15 +10,18 @@ before do
 end
 
 get '/' do
-  'Server 1 running. Go to /test to show data from server 2'
+  [
+    "Server 1",
+    "Hostname: #{ENV['HOSTNAME']}",
+    "See also: /test and /env"
+  ].join "\n"
 end
 
 get '/test' do
-  result = ["Test 1/2: HTTP connection to server2:"]
-  result << (http_connected? ? "PASS" : "FAIL")
-  result << "Test 2/2: Volume from server2:"
-  result << (file_found? ? "PASS" : "FAIL")
-  result.join "\n"
+  [
+    (http_connected? ? "[PASS]" : "[FAIL]") + " Test 1/2: HTTP connection to server2",
+    (file_found?     ? "[PASS]" : "[FAIL]") + " Test 2/2: Volume from server2",
+  ].join "\n"
 end
 
 get '/env' do
