@@ -11,6 +11,5 @@ COPY app/Gemfile* ./
 RUN bundle
 
 COPY app ./
-RUN run setup $build_name
 
 EXPOSE 3000 4000

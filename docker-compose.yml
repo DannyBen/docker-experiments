@@ -12,9 +12,7 @@ services:
   # dc up server1
   server1:
     <<: *default
-    build:
-      context: .
-      args: { build_name: server1 }
+    build: .
     command: ruby server1.rb
     ports: ["3000:3000"]
     links: [server2]
@@ -25,9 +23,7 @@ services:
   # dc up server2
   server2:
     <<: *default
-    build:
-      context: .
-      args: { build_name: server2 }
+    build: .
     command: ruby server2.rb
     ports: ["4000:4000"]
     environment: 
