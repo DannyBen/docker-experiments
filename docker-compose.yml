@@ -1,5 +1,8 @@
 version: '2'
 
+volumes:
+  data:
+
 services:
   # dc run bash
   bash: &default
@@ -29,5 +32,11 @@ services:
     environment: 
       PORT: 4000
 
-volumes:
-  data:
+  test:
+    <<: *default
+    build: .
+    links: [server2]
+    command: ruby test.rb
+    environment: 
+      SERVER2_URL: http://server2:4000
+
