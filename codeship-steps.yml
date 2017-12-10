@@ -1,9 +1,6 @@
 - name: Testing Step
-  steps:
-    - service: test
-      command: ruby test.rb
-    - service: bash
-      command: ls
+  service: test
+  command: ruby test.rb
 
 - name: Deploy Step
   tag: master
