@@ -1,11 +1,11 @@
 - type: parallel
-  name: hello_test_step
+  name: Testing Step
   steps:
     - service: test
       command: ruby test.rb
     - service: bash
       command: ls
-- name: example_tagged_step
+- name: Deploy Step
   tag: master
   service: server1
   command: echo "Deploy here!"
