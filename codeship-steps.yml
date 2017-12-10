@@ -2,7 +2,7 @@
   name: Testing Step
   steps:
     - service: test
-      command: ruby test.rb
+      command: ruby no_test.rb
     - service: bash
       command: ls
 - name: Deploy Step
