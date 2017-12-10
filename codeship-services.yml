@@ -7,9 +7,6 @@ services:
   # dc run bash
   bash: &default
     build: .
-    volumes: 
-    - ./app:/app
-    - data:/data
     command: bash
 
   # dc up server1

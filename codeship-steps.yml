@@ -5,6 +5,7 @@
       command: ruby no_test.rb
     - service: bash
       command: ls
+
 - name: Deploy Step
   tag: master
   service: server1
