@@ -2,7 +2,7 @@
   name: Testing Step
   steps:
     - service: test
-      command: ruby no_test.rb
+      command: ruby test.rb
     - service: bash
       command: ls
 
