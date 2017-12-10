@@ -7,5 +7,5 @@
       command: ls
 - name: example_tagged_step
   tag: master
-  service: web
+  service: server1
   command: echo "Deploy here!"
