@@ -4,12 +4,14 @@ volumes:
   data:
 
 services:
-  # dc run bash
-  bash: &default
-    image: dannyben/experiments
+  default: &default
     volumes: 
     - ./app:/app
     - data:/data
+
+  # dc run bash
+  bash: &default
+    image: dannyben/experiments
     command: bash
 
   # dc up server1
