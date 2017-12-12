@@ -1,7 +1,6 @@
 - type: serial
   name: Testing Step
   service: test
-  command: ruby test.rb
 
 - type: serial
   name: Deploy Step
