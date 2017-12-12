@@ -1,10 +1,11 @@
 require 'sinatra'
 require 'open-uri'
+require 'fileutils'
 
 set port: ENV['PORT']
 set bind: '0.0.0.0'
 
-mkdir '/data' unless Dir.exist? '/data'
+FileUtils.mkdir '/data' unless Dir.exist? '/data'
 File.write '/data/sample.txt', 'tada!'
 
 get '/' do
