@@ -1,9 +1,0 @@
-- type: serial
-  steps: 
-  - name: Test
-    service: test
-    command: ruby test.rb
-  - name: Deploy
-    tag: master
-    service: server1
-    command: echo "Deploy here!"
