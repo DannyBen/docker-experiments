@@ -1,42 +1,4 @@
-version: '2'
-
-volumes:
-  data:
-
 services:
-  # dc run bash
-  bash: &default
+  redirectly:
+    build: .
     image: dannyben/experiments
-    volumes: 
-    - ./app:/app
-    - data:/data
-    command: bash
-
-  # dc up server1
-  server1:
-    <<: *default
-    build: .
-    command: ruby server1.rb
-    ports: ["3000:3000"]
-    links: [server2]
-    environment: 
-      PORT: 3000
-      SERVER2_URL: http://server2:4000
-
-  # dc up server2
-  server2:
-    <<: *default
-    build: .
-    command: ruby server2.rb
-    ports: ["4000:4000"]
-    environment: 
-      PORT: 4000
-
-  test:
-    <<: *default
-    build: .
-    links: [server2]
-    command: ruby test.rb
-    environment: 
-      SERVER2_URL: http://server2:4000
-

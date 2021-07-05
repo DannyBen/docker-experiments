@@ -1,15 +1,16 @@
-FROM dannyben/alpine-ruby
+FROM alpine
 
-ARG build_name
+ENV BUILD_PACKAGES bash curl curl-dev ruby-dev build-base
+ENV RUBY_PACKAGES ruby ruby-etc ruby-io-console libffi-dev zlib-dev
+ENV TERM=linux
+ENV PS1 "\n\n>> redirectly \W \$ "
 
-ENV PS1 "\n\n>> experiments \W \$ "
+RUN apk --no-cache add $BUILD_PACKAGES $RUBY_PACKAGES
 
-RUN apk --no-cache add bash
+RUN gem install bundler && bundle config --global silence_root_warning 1
+
+RUN gem install redirectly
 
 WORKDIR /app
-COPY app/Gemfile* ./
-RUN bundle
 
-COPY app ./
-
-EXPOSE 3000 4000
+ENTRYPOINT ["redirectly"]
