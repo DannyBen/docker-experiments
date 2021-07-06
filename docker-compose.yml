@@ -1,4 +1,4 @@
 services:
-  redirectly:
+  experiments:
     build: .
     image: dannyben/experiments
